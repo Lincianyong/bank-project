@@ -41,7 +41,7 @@ jobs:
       - name: Run migrations
         env:
           PGPASSWORD: password
-        run: make migrate-up
+        run: make migrateup
 
       - name: Build
         run: go build -v ./...
