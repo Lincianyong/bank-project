@@ -18,8 +18,8 @@ jobs:
         # Docker Hub image name
         image: postgres:17
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: secret
           POSTGRES_DB: simple_bank
         # set health checks to determine when the service is ready
         options: >-
@@ -37,6 +37,12 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.20'
+      
+      - name: Install golang-migrate
+        run: |
+          curl -L https://github.com/golang-migrate/migrate/releases/download/v4.17.0/migrate.linux-amd64.tar.gz | tar xvz
+          sudo mv migrate /usr/local/bin/
+          which migrate
 
       - name: Run migrations
         env:
